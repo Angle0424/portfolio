@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #000000 0%, #454546 100%);
+      background-attachment: fixed;
+      color: #222020;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      background: rgba(0, 0, 0, 0.13);
+      color: #999999;
+      box-shadow: 0 4px 24px #bcbcbd22;
+      border-bottom: 2px solid #ffffff44;
+      letter-spacing: 1px;
+    }
+
+    header h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      text-shadow: 0 2px 8px #ffffff22;
+      animation: fadeInDown 1s;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #fff;
+      opacity: 0.85;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 32px;
+      margin: 40px auto 0 auto;
+      max-width: 1200px;
+      padding: 0 20px 40px 20px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.18);
+      box-shadow: 0 6px 24px rgba(182, 184, 184, 0.1), 0 1.5px 6px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(8px);
+      border: 2px solid #ffffff22;
+      transition: transform 0.25s, box-shadow 0.25s, background 0.3s;
+      animation: fadeInCard 1s;
+      position: relative;
+    }
+
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.035);
+      box-shadow: 0 12px 32px rgba(175, 178, 179, 0.18), 0 3px 12px rgba(0,0,0,0.12);
+      border-color: #747474;
+      background: rgba(255,255,255,0.28);
+    }
+
+    .card img {
+      width: 83%;
+      height: 195px;
+      object-fit: cover;
+      border-bottom: 2px solid #ffffff22;
+      transition: filter 0.3s;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .card:hover img {
+      filter: brightness(0.93) saturate(1.1);
+    }
+
+    .card-content {
+      padding: 22px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.25rem;
+      color: #ffffff;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .card-desc {
+      font-size: 1rem;
+      color: #ffffff;
+      opacity: 0.85;
+      margin-bottom: 0;
+    }
+
+    .card-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.7rem;
+      color: #74696933;
+      transition: color 0.2s;
+      pointer-events: none;
+    }
+
+    .card:hover .card-icon {
+      color: #ffffff;
+    }
+
+    @media (max-width: 700px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .card img {
+        height: 160px;
+      }
+    }
+
+    .carousel {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .carousel-track {
+        display: flex;
+        gap: 32px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .carousel-track .card {
+        flex: 0 0 calc(50% - 16px);
+    }
+
+    .carousel-controls {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+    }
+
+    .carousel-button {
+        background: #fff;
+        color: #000000;
+        box-shadow: 0 2px 8px #b5bcbe33;
+        border-radius: 50%;
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        border: none;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        pointer-events: all;
+        font-size: 1.5rem;
+    }
+
+    .carousel-button:hover {
+        background: #757575;
+        color: #fff;
+        transform: scale(1.13);
+    }
+
+    button, .return-btn {
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    button a, .return-btn a {
+      color: #fff !important;
+      text-decoration: none !important;
+    }
+
+    button:hover, .return-btn:hover {
+      background: #707070 !important;
+      color: #fff !important;
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    @media (max-width: 900px) {
+      .card, .carousel-track .card {
+        min-width: 90vw;
+        max-width: 95vw;
+        margin: 0 4vw;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      background: #232526;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #53535355;
+      border-radius: 60px;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fa-solid fa-layer-group"></i> Project Gallery</h1>
+    <p>Showcasing my Intern Front-end Website Project</p>
+  </header>
+
+<section class="gallery carousel">
+    <div class="carousel-track">
+        <div class="card">
+            <span class="card-icon"><i class="fa-solid fa-house"></i></span>
+            <img src="first.png" alt="Project 1" />
+            <div class="card-content">
+                <h3>Home Website</h3>
+                <p class="card-desc">A modern landing page with responsive layout and engaging visuals for first impressions.</p>
+            </div>
+        </div>
+        <div class="card">
+            <span class="card-icon"><i class="fa-solid fa-bullseye"></i></span>
+            <img src="sec2.png" alt="Project 2" />
+            <div class="card-content">
+                <h3>Mission & Vision</h3>
+                <p class="card-desc">Clear presentation of company mission and vision.</p>
+            </div>
+        </div>
+        <div class="card">
+            <span class="card-icon"><i class="fa-solid fa-cogs"></i></span>
+            <img src="3rd.png" alt="Project 3" />
+            <div class="card-content">
+                <h3>Company Services</h3>
+                <p class="card-desc">Service highlights with interactive cards and subtle hover effects for user engagement.</p>
+            </div>
+        </div>
+        <div class="card">
+            <span class="card-icon"><i class="fa-solid fa-users"></i></span>
+            <img src="4th.png" alt="Project 4" />
+            <div class="card-content">
+                <h3>About Company</h3>
+                <p class="card-desc">A section dedicated to company background, values, and team introduction.</p>
+            </div>
+        </div>
+        <div class="card">
+            <span class="card-icon"><i class="fa-solid fa-address-book"></i></span>
+            <img src="last.png" alt="Project 5" />
+            <div class="card-content">
+                <h3>Contacts & More</h3>
+                <p class="card-desc">Contact information and additional resources, styled for clarity and accessibility.</p>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<div style="display: flex; justify-content: center; margin: 30px 10 0 0;">
+    <button style="background: linear-gradient(135deg, #727272, #000000); color: #fff; border: none; border-radius: 7px; padding: 5px 15px; padding-top: 1px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 8px #00bfff33; transition: background 0.2s, transform 0.2s; font-family: 'Segoe UI', Arial, sans-serif;">
+        <a href="portfolio-angel.html" style="color: #b3acac; text-decoration: slategray; font-family: 'Segoe UI', Arial, sans-serif;">Return to Home</a>
+    </button>
+</div>
+
+<script>
+    const button = document.querySelector('button');
+    button.addEventListener('mouseenter', () => {
+        button.style.transform = 'translateY(-3px)';
+    });
+    button.addEventListener('mouseleave', () => {
+        button.style.transform = 'translateY(0)';
+    });
+</script>
+<script>
+  // Infinite seamless carousel for your cards
+  const track = document.querySelector('.carousel-track');
+  let cards = Array.from(track.children);
+
+  // Clone first and last card for seamless effect
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone = cards[cards.length - 1].cloneNode(true);
+  track.appendChild(firstClone);
+  track.insertBefore(lastClone, cards[0]);
+  cards = Array.from(track.children);
+
+  // Create controls
+  const prevButton = document.createElement('button');
+  const nextButton = document.createElement('button');
+  prevButton.classList.add('carousel-button');
+  nextButton.classList.add('carousel-button');
+  prevButton.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+  nextButton.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+  const controls = document.createElement('div');
+  controls.classList.add('carousel-controls');
+  controls.appendChild(prevButton);
+  controls.appendChild(nextButton);
+  document.querySelector('.carousel').appendChild(controls);
+
+  let currentIndex = 1; // Start at the real first card
+  let visibleCards = window.innerWidth <= 700 ? 1 : 2;
+
+  function updateVisibleCards() {
+    visibleCards = window.innerWidth <= 700 ? 1 : 2;
+  }
+
+  function updateCarousel(animate = true) {
+    updateVisibleCards();
+    const cardWidth = cards[0].getBoundingClientRect().width + 32; // Card width + gap
+    track.style.transition = animate ? 'transform 0.3s ease-in-out' : 'none';
+    track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+  }
+
+  // Handle transition end for seamless looping
+  track.addEventListener('transitionend', () => {
+    const cardWidth = cards[0].getBoundingClientRect().width + 32;
+    if (currentIndex === 0) {
+      track.style.transition = 'none';
+      currentIndex = cards.length - 2;
+      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      // Force reflow to allow transition again
+      void track.offsetWidth;
+      track.style.transition = 'transform 0.3s ease-in-out';
+    }
+    if (currentIndex === cards.length - 1) {
+      track.style.transition = 'none';
+      currentIndex = 1;
+      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+      // Force reflow to allow transition again
+      void track.offsetWidth;
+      track.style.transition = 'transform 0.3s ease-in-out';
+    }
+  });
+
+  prevButton.addEventListener('click', () => {
+    currentIndex--;
+    updateCarousel();
+  });
+
+  nextButton.addEventListener('click', () => {
+    currentIndex++;
+    updateCarousel();
+  });
+
+  // Auto continuous swipe (seamless endless loop)
+  let autoSwipe = setInterval(() => {
+    currentIndex++;
+    updateCarousel();
+  }, 3000);
+
+  // Pause on hover
+  track.addEventListener('mouseenter', () => clearInterval(autoSwipe));
+  track.addEventListener('mouseleave', () => {
+    autoSwipe = setInterval(() => {
+      currentIndex++;
+      updateCarousel();
+    }, 3000);
+  });
+
+  // Responsive: adjust on resize
+  window.addEventListener('resize', () => {
+    updateVisibleCards();
+    updateCarousel(false);
+  });
+
+  // Initialize
+  window.addEventListener('DOMContentLoaded', () => {
+    updateCarousel(false);
+  });
+  updateCarousel(false);
+</script>
+</body>
+</html>

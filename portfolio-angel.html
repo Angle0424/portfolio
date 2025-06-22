@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Angel Tanquison - Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #585858 0%, #050505 100%);
+      color: #f3f3f3;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.95);
+      color: #fff;
+      padding: 32px 0 24px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 24px #ffffff22;
+      border-bottom: 2px solid #ffffff44;
+    }
+
+    header img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      margin: 10px 32px 10px 10px;
+      border: 3px solid #ffffff;
+      background-color: #000000;
+      box-shadow: 0 2px 16px #fffefe33;
+      object-fit: cover;
+    }
+
+    header div {
+      max-width: 500px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #797979;
+      text-shadow: 0 2px 8px #ffffff22;
+      animation: fadeInDown 1s;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 10px 0 0 0;
+      color: #ffffff;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    nav {
+      margin-top: 18px;
+    }
+
+    nav a {
+      color: #fff;
+      background: #515353;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 20px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #60626333;
+    }
+
+    nav a:hover {
+      background: #777777;
+      color: #000000;
+      box-shadow: 0 4px 16px #48494955;
+    }
+
+    section {
+      padding: 48px 20px 32px 20px;
+      max-width: 900px;
+      margin: 40px auto 0 auto;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.72);
+      box-shadow: 0 4px 32px #797c7c22;
+      position: relative;
+      z-index: 1;
+    }
+
+    section h2 {
+      color: #ffffff;
+      margin-bottom: 28px;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 8px #3c3f4122;
+      position: relative;
+      display: inline-block;
+      animation: fadeInLeft 1s;
+    }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-40px);}
+      to { opacity: 1; transform: translateX(0);}
+    }
+
+    .typing-container {
+      margin-bottom: 10px;
+    }
+
+    .typing-animation {
+      display: block;
+      overflow: hidden;
+      border-right: 2px solid #ffffff;
+      font-family: 'Fira Mono', monospace;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: #fdfdfd;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 6px;
+      padding: 6px 12px;
+      box-shadow: 0 2px 8px #ffffff11;
+      box-sizing: border-box;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .typing-animation:nth-of-type(2),
+    .typing-animation:nth-of-type(3) {
+      animation-delay: 0s;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from { border-color: transparent; }
+      to { border-color: #ffffff; }
+    }
+
+    .project {
+      background: rgba(83, 83, 83, 0.08);
+      padding: 28px 24px;
+      margin-bottom: 28px;
+      border: 1.5px solid #38393a33;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #50545522;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .project:hover {
+      transform: translateY(-6px) scale(1.025);
+      box-shadow: 0 8px 32px #afb4b644;
+      border-color: #727374;
+    }
+
+    .project h3 {
+      margin-top: 0;
+      color: #858585;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .project a {
+      color: #fff;
+      background: #686868;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 20px;
+      margin-top: 12px;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #7a7a7a33;
+    }
+
+    .project a:hover {
+      background: #fff;
+      color: #7b7d7e;
+      box-shadow: 0 4px 16px #4c4c4d55;
+    }
+
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      font-size: 2rem;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .contact-icons a {
+      color: #d8d8d8;
+      background: rgba(72, 75, 77, 0.08);
+      border-radius: 50%;
+      padding: 12px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #2b2c2c22;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-icons a:hover {
+      background: #fff;
+      color: #9a9ea0;
+      box-shadow: 0 4px 16px #b3b3b355;
+      transform: scale(1.13);
+    }
+
+    
+
+    footer {
+      text-align: center;
+      padding: 24px 10px;
+      background: rgba(0, 0, 0, 0.95);
+      color: #c2c2c2;
+      margin-top: 40px;
+      font-size: 1.08rem;
+      letter-spacing: 0.5px;
+      border-top: 2px solid #bdbdbd44;
+      box-shadow: 0 -2px 24px #2c2c2c22;
+    }
+
+    a {
+      color: #9a9ea0;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    /* Add this to your <style> tag for light/dark theme support */
+    body[data-theme="light"] {
+      background: linear-gradient(135deg, #ffffff 0%, #ce7dc3 100%);
+      color: #d15fd1;
+    }
+    body[data-theme="light"] header {
+      background: #ff75ff;
+      color: #b97f9a;
+      box-shadow: 0 4px 24px #be56ad11;
+      border-bottom: 2px solid #83008344;
+    }
+    body[data-theme="light"] header h1 {
+      color: #ffffff;
+      text-shadow: 0 2px 8px #ff00ff11;
+    }
+    body[data-theme="light"] header p {
+      color: #b60064;
+    }
+    body[data-theme="light"] nav a {
+      background: #ea00ff;
+      color: #fff;
+    }
+    body[data-theme="light"] nav a:hover {
+      background: #fff;
+      color: #ff00bf;
+    }
+    body[data-theme="light"] section {
+      background: #fff;
+      color: #9c599c;
+      box-shadow: 0 4px 32px #cd64db11;
+    }
+    body[data-theme="light"] section h2 {
+      color: #ff006a;
+      text-shadow: 0 2px 8px #db4acf11;
+    }
+    body[data-theme="light"] .typing-animation {
+      background: #e0f7fa;
+      color: #b000b6;
+      border-right: 2px solid #ff0062;
+    }
+    body[data-theme="light"] .project {
+      background: #e0f7fa;
+      border: 1.5px solid #c300ff22;
+      box-shadow: 0 2px 12px #ff008c11;
+    }
+    body[data-theme="light"] .project h3 {
+      color: #ff00bf;
+    }
+    body[data-theme="light"] .project a {
+      background: #ff0095;
+      color: #fff;
+    }
+    body[data-theme="light"] .project a:hover {
+      background: #fff;
+      color: #f700ff;
+    }
+    body[data-theme="light"] .contact-icons a {
+      background: #e0f7fa;
+      color: #ff00ff;
+      box-shadow: 0 2px 8px #ff00dd11;
+    }
+    body[data-theme="light"] .contact-icons a:hover {
+      background: #fff;
+      color: #00bfff;
+      box-shadow: 0 4px 16px #ff00f233;
+    }
+    body[data-theme="light"] footer {
+      background: #e0f7fa;
+      color: #b60098;
+      border-top: 2px solid #ff00dd44;
+      box-shadow: 0 -2px 24px #e100ff11;
+    }
+
+    /* Make the theme toggle button look and behave exactly like your nav links */
+    #themeToggle {
+      background: #cf4cbe;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 18px;
+      font-size: 1.1rem;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-weight: 600;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #ffffff33;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    #themeToggle:hover {
+      background: #fff;
+      color: #ff009d;
+      box-shadow: 0 4px 16px #ffffff55;
+    }
+    body[data-theme="light"] #themeToggle {
+      background: #f700ff;
+      color: #fff;
+      box-shadow: 0 2px 8px #ff00f211;
+    }
+    body[data-theme="light"] #themeToggle:hover {
+      background: #fff;
+      color: #b700ff;
+      box-shadow: 0 4px 16px #c300ff33;
+    }
+    #themeToggle i, #themeToggle span {
+      pointer-events: none;
+    }
+
+    /* Add to your <style> for the new contact form and layout */
+    .contact-form {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(255, 255, 255, 0.06);
+      max-width: 500px;
+      margin: 24px auto 32px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #aaa;
+      padding: 12px;
+      font-size: 1rem;
+      color: #fff;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #838383;
+    }
+
+    .contact-form button {
+      background: #857f7f;
+      color: #ffffff;
+      padding: 12px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .contact-form button:hover {
+      background: #666867;
+      transform: translateY(-2px);
+    }
+
+    .contact-form button i {
+      margin-right: 8px;
+    }
+
+    /* Optional entrance animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Add to your <style> for a modern, engaging contact section */
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      justify-content: center;
+      margin: 32px 0 36px 0;
+    }
+    .contact-card {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #64626222;
+      transition: transform 0.22s, box-shadow 0.22s, background 0.22s;
+      min-width: 170px;
+      max-width: 220px;
+      flex: 1 1 170px;
+      text-align: center;
+      padding: 22px 12px 14px 12px;
+      position: relative;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    .contact-card a {
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+    }
+    .contact-card i {
+      font-size: 2.1rem;
+      margin-bottom: 6px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .contact-card span {
+      font-weight: 700;
+      font-size: 1.08rem;
+      margin-bottom: 2px;
+      color: #d8d8d8;
+      letter-spacing: 0.5px;
+    }
+    .contact-card small {
+      color: #dadada;
+      font-size: 0.95rem;
+      opacity: 0.8;
+    }
+    .contact-card:hover {
+      background: #fafafa;
+      box-shadow: 0 8px 32px #3b3b3b44;
+      transform: translateY(-8px) scale(1.04);
+      border-color: #fff;
+    }
+    .contact-card:hover a,
+    .contact-card:hover span,
+    .contact-card:hover small {
+      color: #242121 !important;
+    }
+    .contact-card:hover i {
+      color: #141313;
+      transform: scale(1.18) rotate(-8deg);
+    }
+    body[data-theme="light"] .contact-card {
+      background: #ff93db;
+      box-shadow: 0 2px 12px #ff00f211;
+    }
+    body[data-theme="light"] .contact-card span,
+    body[data-theme="light"] .contact-card a {
+      color: #ffffff;
+    }
+    body[data-theme="light"] .contact-card small {
+      color: #ffffff;
+    }
+    body[data-theme="light"] .contact-card:hover {
+      background: #ff38bd;
+      box-shadow: 0 8px 32px #e72eff41;
+    }
+    body[data-theme="light"] .contact-card:hover span,
+    body[data-theme="light"] .contact-card:hover a,
+    body[data-theme="light"] .contact-card:hover small,
+    body[data-theme="light"] .contact-card:hover i {
+      color: #fff !important;
+    }
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        padding: 24px 0 16px 0;
+      }
+
+      header img {
+        margin-bottom: 15px;
+      }
+
+      section {
+        padding: 32px 5vw 24px 5vw;
+        margin: 24px 0 0 0;
+      }
+
+      .project {
+        padding: 18px 8px;
+      }
+
+      .contact-icons {
+        font-size: 1.4rem;
+        gap: 14px;
+      }
+
+      .contact-cards {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+      .contact-card {
+        min-width: 70vw;
+        max-width: 95vw;
+      }
+    }
+
+    /* Default (dark mode): black text on white background */
+    .contact-form input,
+    .contact-form textarea {
+      color: #111 !important;
+      background: rgba(255,255,255,0.92);
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #444 !important;
+      opacity: 1;
+    }
+
+    /* Light mode: dark text on white background */
+    body[data-theme="light"] .contact-form input,
+    body[data-theme="light"] .contact-form textarea {
+      color: #232526 !important;
+      background: #fff;
+    }
+    body[data-theme="light"] .contact-form input::placeholder,
+    body[data-theme="light"] .contact-form textarea::placeholder {
+      color: #888 !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="angel.jpg" alt="Angel Tanquison's Profile Photo" />
+    <div>
+      <h1>Angel Tanquison</h1>
+      <p> Web Developer | Network Engineer | IT Support</p>
+      <nav style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        <a href="#about">About Me</a>
+        <a href="#projects">My Projects</a>
+        <a href="#contact">Get in Touch</a>
+        <button id="themeToggle" title="Toggle theme" style="background:none; border:none; font-size:1.5rem; color:#ffffff; cursor:pointer; margin-left:10px; display:flex; align-items:center;">
+          <i id="themeIcon" class="fa-regular fa-moon"></i>
+          <span id="themeLabel" style="margin-left:6px; font-size:1rem; color:#ffffff;">Dark Mode</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="typing-container" style="display: block;">
+      <p class="typing-animation" data-text="Hello! I'm Angel Tanquison, an aspiring web developer and network engineer with a passion for creating efficient, scalable, and user-friendly web applications."></p>
+    </div>
+    <div class="typing-container" style="display: none;">
+      <p class="typing-animation" data-text="With a strong foundation in front-end technologies, I specialize in delivering high-quality solutions that meet client needs."></p>
+    </div>
+    <div class="typing-container" style="display: none;">
+      <p class="typing-animation" data-text="I am also skilled in network engineering and IT support, ensuring robust and secure network infrastructures."></p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Front-end Website</h3>
+      <p>This project is a responsive front-end website built to provide an engaging user interface and smooth navigation experience. It serves as a platform to display content, services, or products in a clean and modern layout. The site utilizes HTML, CSS, and JavaScript for structure, styling, and interactivity.</p>
+      <a href="project.html" target="_blank">View Project</a>
+    </div>
+    <div class="project">
+      <h3>Coming Soon</h3>
+      <p>Stay tuned for an exciting new project! Details will be revealed soon.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Let's Connect</h2>
+    <p>If you'd like to collaborate, ask questions, or just say hello, reach out below or message me on social!</p>
+
+    <div class="contact-cards">
+      <div class="contact-card">
+        <a href="mailto:angeltanquison11@gmail.com" title="Email">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Email</span>
+          <small>angeltanquison11@gmail.com</small>
+        </a>
+      </div>
+      <div class="contact-card">
+        <a href="https://www.linkedin.com/in/angel-tanquison-ba92b7352" title="LinkedIn" target="_blank">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+          <small>/in/angel-tanquison-ba92b7352</small>
+        </a>
+      </div>
+      <div class="contact-card">
+        <a href="https://github.com/Angle0424" title="GitHub" target="_blank">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+          <small>@Angle0424</small>
+        </a>
+      </div>
+      <div class="contact-card">
+        <a href="https://www.facebook.com/share/19Qnwf2Q2y/?mibextid=wwXIfr" title="Facebook" target="_blank">
+          <i class="fab fa-facebook"></i>
+          <span>Facebook</span>
+          <small>/Angel Tanquison</small>
+        </a>
+      </div>
+      <div class="contact-card">
+        <a href="https://www.tiktok.com/@shiijjr?is_from_webapp=1&sender_device=pc" title="TikTok" target="_blank">
+          <i class="fab fa-tiktok"></i>
+          <span>TikTok</span>
+          <small>@shiijjr</small>
+        </a>
+      </div>
+      <div class="contact-card">
+        <a href="https://www.instagram.com/_aaeeel?igsh=MTZsNWNmc2d4MnYyaQ%3D%3D&utm_source=qr" title="Instagram" target="_blank">
+          <i class="fab fa-instagram"></i>
+          <span>Instagram</span>
+          <small>@_aaeeel</small>
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" action="https://formspree.io/f/xkgbqwnp" method="POST" >
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025  | Angel Tanquison | Built with 💻 and ☕| All rights reserved. </p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const containers = document.querySelectorAll('.typing-container');
+      const typingSpeed = 18; // ms per character
+      let current = 0;
+    
+      function typeText(container, callback) {
+        const p = container.querySelector('.typing-animation');
+        const text = p.getAttribute('data-text');
+        let i = 0;
+        p.textContent = '';
+        p.style.borderRight = '2px solid #00bfff';
+        p.style.whiteSpace = 'pre-wrap';
+        p.style.overflow = 'hidden';
+    
+        function typeChar() {
+          if (i <= text.length) {
+            p.textContent = text.slice(0, i);
+            i++;
+            setTimeout(typeChar, typingSpeed);
+          } else {
+            p.style.borderRight = 'none';
+            if (callback) callback();
+          }
+        }
+        typeChar();
+      }
+    
+      function showNext() {
+        if (current < containers.length) {
+          containers[current].style.display = 'block';
+          typeText(containers[current], () => {
+            current++;
+            showNext();
+          });
+        }
+      }
+      // Hide all except first
+      containers.forEach((c, idx) => { if(idx !== 0) c.style.display = 'none'; });
+      showNext();
+    });
+  </script>
+  <script>
+  // Theme toggle with icon and label
+  const toggleBtn = document.getElementById("themeToggle");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeLabel = document.getElementById("themeLabel");
+  const root = document.body;
+  const currentTheme = localStorage.getItem("theme");
+
+  function setThemeIcon(theme) {
+    if (theme === "light") {
+      themeIcon.className = "fa-regular fa-sun";
+      themeLabel.textContent = "Light Mode";
+    } else {
+      themeIcon.className = "fa-regular fa-moon";
+      themeLabel.textContent = "Dark Mode";
+    }
+  }
+
+  if (currentTheme === "light") {
+    root.setAttribute("data-theme", "light");
+    setThemeIcon("light");
+  } else {
+    root.setAttribute("data-theme", "dark");
+    setThemeIcon("dark");
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    const theme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    setThemeIcon(theme);
+  });
+</script>
+</body>
+</html>
