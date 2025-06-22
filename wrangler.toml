@@ -3,5 +3,5 @@ account_id = "75e6dacd01ec99fb2ffccb948426dc49"
 workers_dev = true
 compatibility_date = "2025-06-22"
 
-[site]
-bucket = "./public"
+[assets]
+directory = "./"
