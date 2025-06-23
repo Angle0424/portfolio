@@ -535,6 +535,70 @@
         max-width: 95vw;
       }
     }
+    @media (max-width: 768px) {
+  /* Header adjustments */
+  header {
+    flex-direction: column;
+    padding: 24px 0 16px 0;
+  }
+  header img {
+    margin-bottom: 15px;
+    width: 90px;
+    height: 90px;
+  }
+  header div {
+    max-width: 90%;
+  }
+  nav {
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  nav a, 
+  #themeToggle {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  /* Section adjustments */
+  section {
+    padding: 32px 5vw 24px 5vw;
+    margin: 24px auto 0 auto;
+  }
+  section h2 {
+    font-size: 1.8rem;
+  }
+  .typing-animation {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  /* Project card adjustments */
+  .project {
+    padding: 18px 8px;
+  }
+
+  /* Contact cards & form adjustments */
+  .contact-cards {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  .contact-card {
+    min-width: 70vw;
+    max-width: 95vw;
+  }
+  .contact-form {
+    max-width: 90%;
+    margin: 24px auto;
+  }
+
+  /* Footer adjustments */
+  footer {
+    padding: 16px 10px;
+    font-size: 0.9rem;
+  }
+}
 
     /* Default (dark mode): black text on white background */
     .contact-form input,
