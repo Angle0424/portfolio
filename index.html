@@ -626,14 +626,14 @@
 </head>
 <body>
   <header>
-    <img src="angel.jpg" alt="Angel Tanquison's Profile Photo" />
-    <div>
+    <img src="angel.jpg" alt="Angel Tanquison's Profile Photo" style="margin-bottom: 20px;" />
+    <div style="text-align: center;">
       <h1>Angel Tanquison</h1>
-      <p> Web Developer | Network Engineer | IT Support</p>
-      <nav style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+      <p>Web Developer | Network Engineer | IT Support</p>
+      <nav style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 15px; margin-top: 20px;">
         <a href="#about">About Me</a>
         <a href="#projects">My Projects</a>
-        <a href="certi.html" target="_blank">Certifications</a> <!-- Updated Certifications link -->
+        <a href="certi.html" target="_blank">Certifications</a>
         <a href="#contact">Get in Touch</a>
         <button id="themeToggle" title="Toggle theme" style="background:none; border:none; font-size:1.5rem; color:#ffffff; cursor:pointer; margin-left:10px; display:flex; align-items:center;">
           <i id="themeIcon" class="fa-regular fa-moon"></i>
@@ -782,11 +782,12 @@
 
   function setThemeIcon(theme) {
     if (theme === "light") {
-      themeIcon.className = "fa-regular fa-sun";
-      themeLabel.textContent = "Light Mode";
-    } else {
       themeIcon.className = "fa-regular fa-moon";
       themeLabel.textContent = "Dark Mode";
+      
+    } else {
+      themeIcon.className = "fa-regular fa-sun";
+      themeLabel.textContent = "Light Mode";
     }
   }
 

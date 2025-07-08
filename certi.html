@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>My Certification</title>
   <style>
     body {
@@ -16,6 +16,7 @@
       margin: 0;
       padding: 20px;
       color: #ffffff;
+      overflow-x: hidden;
     }
 
     .carousel {
@@ -30,14 +31,17 @@
     .carousel-track {
       display: flex;
       transition: transform 0.5s ease-in-out;
+      width: 100%;
     }
 
     .carousel-item {
-      min-width:88%;
+      min-width: 100%;
+      flex: 0 0 100%;
       text-align: center;
       background: rgba(255, 255, 255, 0.9);
       padding: 40px;
       color: #333333;
+      box-sizing: border-box;
     }
 
     .carousel-item h1 {
@@ -71,26 +75,128 @@
       display: flex;
       justify-content: space-between;
       transform: translateY(-50%);
+      padding: 0 10px;
+      box-sizing: border-box;
+      pointer-events: none;
     }
 
     .carousel-button {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.8);
       border: none;
       border-radius: 50%;
-      padding: 10px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
+      pointer-events: auto;
+      font-size: 1.2rem;
     }
 
     .carousel-button:hover {
-      background: #cccccc;
+      background: #ffffff;
+      transform: scale(1.1);
+    }
+    
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+    }
+    
+    .carousel-dot.active {
+      background: white;
     }
 
     .footer {
       margin-top: 20px;
       font-size: 0.9rem;
       color: #cccccc;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+    }
+
+    /* Large devices (desktops) */
+    @media (max-width: 1200px) {
+      .carousel {
+        max-width: 650px;
+      }
+    }
+
+    /* Medium devices (tablets) */
+    @media (max-width: 992px) {
+      .carousel {
+        max-width: 600px;
+      }
+      
+      .carousel-item {
+        padding: 30px;
+      }
+    }
+
+    /* Small devices (landscape phones) */
+    @media (max-width: 768px) {
+      .carousel {
+        max-width: 500px;
+      }
+      
+      .carousel-item {
+        padding: 25px;
+      }
+      
+      .carousel-item h1 {
+        font-size: 1.6rem;
+      }
+      
+      .carousel-item p {
+        font-size: 1rem;
+      }
+      
+      .carousel-button {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    /* Extra small devices (portrait phones) */
+    @media (max-width: 576px) {
+      .carousel {
+        width: 95%;
+        max-width: none;
+      }
+      
+      .carousel-item {
+        padding: 20px 15px;
+      }
+      
+      .carousel-item h1 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+      
+      .carousel-item p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      
+      .carousel-button {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -115,6 +221,10 @@
       <button class="carousel-button" id="prevButton">&lt;</button>
       <button class="carousel-button" id="nextButton">&gt;</button>
     </div>
+    <div class="carousel-dots">
+      <div class="carousel-dot active"></div>
+      <div class="carousel-dot"></div>
+    </div>
   </div>
 
   <div class="footer">
@@ -126,11 +236,19 @@
     const items = document.querySelectorAll('.carousel-item');
     const prevButton = document.getElementById('prevButton');
     const nextButton = document.getElementById('nextButton');
+    const dots = document.querySelectorAll('.carousel-dot');
     let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
 
     function updateCarousel() {
       const itemWidth = items[0].getBoundingClientRect().width;
       track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
     }
 
     prevButton.addEventListener('click', () => {
@@ -142,8 +260,47 @@
       currentIndex = (currentIndex < items.length - 1) ? currentIndex + 1 : 0;
       updateCarousel();
     });
+    
+    // Add click event listeners to dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
+      });
+    });
+
+    // Touch events for mobile swipe
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, {passive: true});
+    
+    track.addEventListener('touchmove', (e) => {
+      if (!startX) return;
+      currentX = e.touches[0].clientX;
+    }, {passive: true});
+    
+    track.addEventListener('touchend', (e) => {
+      if (!startX || !currentX) return;
+      
+      const diffX = startX - currentX;
+      
+      if (Math.abs(diffX) > 50) { // Minimum swipe distance
+        if (diffX > 0) { // Swipe left
+          currentIndex = Math.min(currentIndex + 1, items.length - 1);
+        } else { // Swipe right
+          currentIndex = Math.max(currentIndex - 1, 0);
+        }
+        updateCarousel();
+      }
+      
+      startX = 0;
+      currentX = 0;
+    }, {passive: true});
 
     window.addEventListener('resize', updateCarousel);
+    
+    // Initial setup
+    updateCarousel();
   </script>
 
 </body>
